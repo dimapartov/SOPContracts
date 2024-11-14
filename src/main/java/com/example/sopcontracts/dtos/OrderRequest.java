@@ -15,4 +15,6 @@ public record OrderRequest(
 
         @NotBlank(message = "Email клиента обязателен")
         String customerEmail
-) {}
+) {
+
+}

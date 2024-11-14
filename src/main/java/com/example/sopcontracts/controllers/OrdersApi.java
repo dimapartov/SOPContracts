@@ -1,12 +1,12 @@
 package com.example.sopcontracts.controllers;
 
+import com.example.sopcontracts.dtos.ErrorResponse;
 import com.example.sopcontracts.dtos.OrderRequest;
 import com.example.sopcontracts.dtos.OrderResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
-
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
@@ -22,9 +22,12 @@ import java.util.UUID;
 @ApiResponses({
         @ApiResponse(responseCode = "200", description = "Успешная обработка запроса", content = @Content(mediaType = "application/json",
                 schema = @Schema(implementation = OrderResponse.class))),
-        @ApiResponse(responseCode = "400", description = "Ошибка валидации"),
-        @ApiResponse(responseCode = "404", description = "Ресурс не найден"),
-        @ApiResponse(responseCode = "500", description = "Внутренняя ошибка сервера")
+        @ApiResponse(responseCode = "400", description = "Ошибка валидации", content = @Content(mediaType = "application/json",
+                schema = @Schema(implementation = ErrorResponse.class))),
+        @ApiResponse(responseCode = "404", description = "Ресурс не найден", content = @Content(mediaType = "application/json",
+                schema = @Schema(implementation = ErrorResponse.class))),
+        @ApiResponse(responseCode = "500", description = "Внутренняя ошибка сервера", content = @Content(mediaType = "application/json",
+                schema = @Schema(implementation = ErrorResponse.class)))
 })
 public interface OrdersApi {
 
