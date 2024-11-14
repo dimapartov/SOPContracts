@@ -2,16 +2,17 @@ package com.example.sopcontracts.controllers;
 
 import com.example.sopcontracts.dtos.OrderRequest;
 import com.example.sopcontracts.dtos.OrderResponse;
+import com.example.sopcontracts.dtos.OrderStatusEnum;
+import com.example.sopcontracts.exceptions.ResourceNotFoundException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-
 @RestController
 public class OrdersController implements OrdersApi {
-
 
     @Override
     public OrderResponse createOrder(OrderRequest orderRequest) {
@@ -34,7 +35,7 @@ public class OrdersController implements OrdersApi {
     }
 
     @Override
-    public ResponseEntity<Void> deleteOrder(UUID id) {
+    public ResponseEntity<Boolean> deleteOrder(UUID id) {
         return null;
     }
 

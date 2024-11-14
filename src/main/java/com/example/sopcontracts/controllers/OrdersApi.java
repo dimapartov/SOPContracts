@@ -3,6 +3,8 @@ package com.example.sopcontracts.controllers;
 import com.example.sopcontracts.dtos.OrderRequest;
 import com.example.sopcontracts.dtos.OrderResponse;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
@@ -17,12 +19,13 @@ import java.util.UUID;
 
 
 @Tag(name = "Orders", description = "API для работы с заказами")
-/*@ApiResponses({
-        @ApiResponse(responseCode = "200", description = "Успешная обработка запроса"),
+@ApiResponses({
+        @ApiResponse(responseCode = "200", description = "Успешная обработка запроса", content = @Content(mediaType = "application/json",
+                schema = @Schema(implementation = OrderResponse.class))),
         @ApiResponse(responseCode = "400", description = "Ошибка валидации"),
         @ApiResponse(responseCode = "404", description = "Ресурс не найден"),
         @ApiResponse(responseCode = "500", description = "Внутренняя ошибка сервера")
-})*/
+})
 public interface OrdersApi {
 
     @Operation(summary = "Создать новый заказ")
@@ -34,11 +37,6 @@ public interface OrdersApi {
     ResponseEntity<List<OrderResponse>> getAllOrders();
 
     @Operation(summary = "Получить заказ по ID")
-    @ApiResponses({
-            @ApiResponse(responseCode = "200", description = "Заказ найден"),
-            @ApiResponse(responseCode = "404", description = "Заказ не найден"),
-            @ApiResponse(responseCode = "500", description = "Внутренняя ошибка сервера")
-    })
     @GetMapping("/api/orders/{id}")
     ResponseEntity<OrderResponse> getOrderById(@PathVariable UUID id);
 
@@ -49,6 +47,6 @@ public interface OrdersApi {
 
     @Operation(summary = "Удалить заказ по ID")
     @DeleteMapping("/api/orders/delete/{id}")
-    ResponseEntity<Void> deleteOrder(@PathVariable UUID id);
+    ResponseEntity<Boolean> deleteOrder(@PathVariable UUID id);
 
 }
