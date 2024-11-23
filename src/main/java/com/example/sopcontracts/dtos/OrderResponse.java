@@ -1,5 +1,7 @@
 package com.example.sopcontracts.dtos;
 
+import com.example.sopcontracts.enums.OrderStatusEnum;
+
 import java.util.UUID;
 
 

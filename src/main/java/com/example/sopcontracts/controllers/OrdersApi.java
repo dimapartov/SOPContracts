@@ -10,11 +10,12 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
+import org.springframework.hateoas.CollectionModel;
+import org.springframework.hateoas.EntityModel;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import java.util.UUID;
 
 
@@ -33,20 +34,19 @@ public interface OrdersApi {
 
     @Operation(summary = "Создать новый заказ")
     @PostMapping(value = "/api/orders/create", produces = MediaType.APPLICATION_JSON_VALUE)
-    OrderResponse createOrder(@Valid @RequestBody OrderRequest orderRequest);
+    ResponseEntity<EntityModel<OrderResponse>> createOrder(@Valid @RequestBody OrderRequest orderRequest);
 
     @Operation(summary = "Получить список всех заказов")
     @GetMapping("/api/orders/all")
-    ResponseEntity<List<OrderResponse>> getAllOrders();
+    ResponseEntity<CollectionModel<EntityModel<OrderResponse>>> getAllOrders();
 
     @Operation(summary = "Получить заказ по ID")
     @GetMapping("/api/orders/{id}")
-    ResponseEntity<OrderResponse> getOrderById(@PathVariable UUID id);
-
+    ResponseEntity<EntityModel<OrderResponse>> getOrderById(@PathVariable UUID id);
 
     @Operation(summary = "Обновить статус заказа")
     @PutMapping("/api/orders/update/{id}")
-    ResponseEntity<OrderResponse> updateOrderStatus(@PathVariable UUID id, @RequestParam String newStatus);
+    ResponseEntity<EntityModel<OrderResponse>> updateOrderStatus(@PathVariable UUID id, @RequestParam String newStatus);
 
     @Operation(summary = "Удалить заказ по ID")
     @DeleteMapping("/api/orders/delete/{id}")

@@ -1,4 +1,4 @@
-package com.example.sopcontracts.dtos;
+package com.example.sopcontracts.enums;
 
 public enum OrderStatusEnum {
 
