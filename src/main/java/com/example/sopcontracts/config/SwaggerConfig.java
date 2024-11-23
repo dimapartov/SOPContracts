@@ -11,8 +11,7 @@ public class SwaggerConfig {
 
     @Bean
     public OpenAPI customOpenAPI() {
-        return new OpenAPI()
-                .addServersItem(new Server().url("http://localhost:8081").description("Основной API"));
+        return new OpenAPI().addServersItem(new Server().url("http://localhost:8081").description("Основной API"));
     }
 
 }

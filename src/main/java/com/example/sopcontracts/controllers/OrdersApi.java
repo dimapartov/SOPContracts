@@ -41,15 +41,15 @@ public interface OrdersApi {
     ResponseEntity<CollectionModel<EntityModel<OrderResponse>>> getAllOrders();
 
     @Operation(summary = "Получить заказ по ID")
-    @GetMapping("/api/orders/{id}")
-    ResponseEntity<EntityModel<OrderResponse>> getOrderById(@PathVariable UUID id);
+    @GetMapping("/api/orders/{orderId}")
+    ResponseEntity<EntityModel<OrderResponse>> getOrderById(@PathVariable UUID orderId);
 
     @Operation(summary = "Обновить статус заказа")
-    @PutMapping("/api/orders/update/{id}")
-    ResponseEntity<EntityModel<OrderResponse>> updateOrderStatus(@PathVariable UUID id, @RequestParam String newStatus);
+    @PutMapping("/api/orders/update/{orderId}")
+    ResponseEntity<EntityModel<OrderResponse>> updateOrderStatus(@PathVariable UUID orderId, @RequestParam String newStatus);
 
     @Operation(summary = "Удалить заказ по ID")
-    @DeleteMapping("/api/orders/delete/{id}")
-    ResponseEntity<Boolean> deleteOrder(@PathVariable UUID id);
+    @DeleteMapping("/api/orders/delete/{orderId}")
+    ResponseEntity<String> deleteOrder(@PathVariable UUID orderId);
 
 }
