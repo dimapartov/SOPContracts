@@ -6,7 +6,6 @@ public class ErrorResponse {
     private String errorCode;
     private String details;
 
-    // Конструкторы, геттеры и сеттеры
     public ErrorResponse(String message, String errorCode, String details) {
         this.message = message;
         this.errorCode = errorCode;

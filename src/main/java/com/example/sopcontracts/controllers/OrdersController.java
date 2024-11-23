@@ -19,7 +19,6 @@ public class OrdersController implements OrdersApi {
 
     @Override
     public OrderResponse createOrder(OrderRequest orderRequest) {
-        // Логика создания заказа
         UUID orderId = UUID.randomUUID();
         OrderResponse order = new OrderResponse(orderId, orderRequest.employeeId(), orderRequest.customerName(), orderRequest.customerEmail(), OrderStatusEnum.CREATED);
         orders.add(order);
@@ -29,7 +28,7 @@ public class OrdersController implements OrdersApi {
     @Override
     public ResponseEntity<List<OrderResponse>> getAllOrders() {
         if (orders.isEmpty()) {
-            throw new OrderNotFoundException(UUID.randomUUID()); // Если заказов нет
+            throw new OrderNotFoundException(UUID.randomUUID());
         }
         return ResponseEntity.ok(orders);
     }
