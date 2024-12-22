@@ -7,13 +7,13 @@ import java.util.UUID;
 
 
 public record OrderRequest(
-        @NotNull(message = "ID сотрудника обязателен")
+        @NotNull(message = "Employee Id is mandatory")
         UUID employeeId,
 
-        @NotBlank(message = "Имя клиента обязательно")
+        @NotBlank(message = "Customer name is mandatory")
         String customerName,
 
-        @NotBlank(message = "Email клиента обязателен")
+        @NotBlank(message = "Customer email is mandatory")
         String customerEmail
 ) {
 
