@@ -20,7 +20,7 @@ public class GlobalExceptionHandler {
         ErrorResponse errorResponse = new ErrorResponse(
                 "Resource not found",
                 "404/RESOURCE_NOT_FOUND",
-                ex.getReason() // Используем значение reason (которое вы задаете при создании исключения)
+                ex.getReason()
         );
         return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
     }
@@ -37,14 +37,12 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<ErrorResponse> handleValidationException(MethodArgumentNotValidException ex) {
-        // Extract all validation error messages
         BindingResult bindingResult = ex.getBindingResult();
         String errors = bindingResult.getFieldErrors()
                 .stream()
                 .map(FieldError::getDefaultMessage)
                 .collect(Collectors.joining(", "));
 
-        // Provide a clean error response
         ErrorResponse errorResponse = new ErrorResponse(
                 "Validation failed",
                 "400/VALIDATION_ERROR",
@@ -70,7 +68,7 @@ public class GlobalExceptionHandler {
                 "422/UNPROCESSABLE_ENTITY",
                 ex.getMessage()
         );
-        return new ResponseEntity<>(errorResponse, HttpStatus.UNPROCESSABLE_ENTITY); // Изменено на UNPROCESSABLE_ENTITY
+        return new ResponseEntity<>(errorResponse, HttpStatus.UNPROCESSABLE_ENTITY);
     }
 
 
